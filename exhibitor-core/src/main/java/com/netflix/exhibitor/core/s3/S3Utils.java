@@ -73,6 +73,7 @@ public class S3Utils
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(bytes.length);
         metadata.setLastModified(new Date());
+        metadata.setSSEAlgorithm(ObjectMetadata.AES_256_SERVER_SIDE_ENCRYPTION);
         metadata.setContentMD5(S3Utils.toBase64(md5));
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, key, new ByteArrayInputStream(bytes), metadata);
         PutObjectResult putObjectResult = client.putObject(putObjectRequest);
